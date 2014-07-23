@@ -1,6 +1,6 @@
 CREATE SCHEMA core;
 
-SET search_path = 'core'
+SET search_path = 'core';
 
 CREATE TYPE op_mode AS ENUM ('nfm', 'am');
 CREATE TYPE tone_mode AS ENUM ('tone');
@@ -12,8 +12,8 @@ CREATE TABLE channels (
     id BIGSERIAL PRIMARY KEY,
     rx NUMERIC(8,5) NOT NULL,
     tx NUMERIC(8,5) NOT NULL,
-    offset NUMERIC(8,5),
-    op_mode op_mode NOT NULL DEFAULT 'NFM',
+    tx_offset NUMERIC(8,5),
+    op_mode op_mode NOT NULL DEFAULT 'nfm',
     full_name TEXT,
     short_name VARCHAR(17),
     description TEXT,
@@ -34,4 +34,14 @@ CREATE TABLE channels (
     comment TEXT
 );
 
+CREATE INDEX ON channels (rx);
+CREATE INDEX ON channels (full_name);
+CREATE INDEX ON channels (short_name);
 
+CREATE TABLE callsigns (
+    id BIGSERIAL PRIMARY KEY,
+    callsign VARCHAR(6) UNIQUE NOT NULL,
+    name TEXT
+);
+
+CREATE INDEX ON callsigns (name);
