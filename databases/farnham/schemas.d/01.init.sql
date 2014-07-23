@@ -10,9 +10,9 @@ CREATE TYPE vibrator AS ENUM('busy', 'signaling');
 
 CREATE TABLE channels (
     id BIGSERIAL PRIMARY KEY,
-    rx NUMERIC(8,5) NOT NULL,
-    tx NUMERIC(8,5) NOT NULL,
-    tx_offset NUMERIC(8,5),
+    rx NUMERIC(9,5) NOT NULL,
+    tx NUMERIC(9,5) NOT NULL,
+    tx_offset NUMERIC(9,5),
     op_mode op_mode NOT NULL DEFAULT 'nfm',
     full_name TEXT,
     short_name VARCHAR(17),
